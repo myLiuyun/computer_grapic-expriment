@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="mainCanvas" name="canvas" native="true">
+      <property name="styleSheet">
+       <string notr="true">QWidget { border: 2px solid blue; }</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>开始</string>
+    </property>
+    <addaction name="quit"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>颜色设置</string>
+    </property>
+    <addaction name="setColor"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>变换工具</string>
+    </property>
+    <addaction name="anchorConversion"/>
+    <addaction name="shearConversion"/>
+    <addaction name="scaleConversion"/>
+    <addaction name="rotateConversion"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>内置图形</string>
+    </property>
+    <addaction name="drawSquare"/>
+    <addaction name="drawStar"/>
+    <addaction name="drawHexgon"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="selectTool"/>
+   <addaction name="separator"/>
+   <addaction name="drawLine"/>
+   <addaction name="drawCircle"/>
+   <addaction name="drawEllipse"/>
+   <addaction name="separator"/>
+   <addaction name="fillPolygon"/>
+   <addaction name="fillFence"/>
+   <addaction name="separator"/>
+   <addaction name="drawPolygon"/>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>200</width>
+     <height>70</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>250</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>AttribEditer</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="EllipseControlWidget" name="attribWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="TransformWidget" name="transformWidget" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="drawLine">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>直线工具</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;绘制直线&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="drawCircle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>圆形工具</string>
+   </property>
+   <property name="toolTip">
+    <string>绘制正圆形</string>
+   </property>
+  </action>
+  <action name="drawEllipse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>椭圆工具</string>
+   </property>
+   <property name="toolTip">
+    <string>绘制椭圆</string>
+   </property>
+  </action>
+  <action name="quit">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </action>
+  <action name="fillPolygon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>普通填充</string>
+   </property>
+   <property name="toolTip">
+    <string>填充方法1</string>
+   </property>
+  </action>
+  <action name="fillFence">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>栅栏填充</string>
+   </property>
+  </action>
+  <action name="setColor">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>设置颜色</string>
+   </property>
+  </action>
+  <action name="drawPolygon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>多边形绘制</string>
+   </property>
+  </action>
+  <action name="selectTool">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>选择工具</string>
+   </property>
+  </action>
+  <action name="anchorConversion">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>移动锚点</string>
+   </property>
+  </action>
+  <action name="shearConversion">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>错切变换</string>
+   </property>
+  </action>
+  <action name="rotateConversion">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>旋转变换</string>
+   </property>
+  </action>
+  <action name="scaleConversion">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>缩放变换</string>
+   </property>
+  </action>
+  <action name="drawSquare">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>正方形</string>
+   </property>
+   <property name="toolTip">
+    <string>绘制正方形</string>
+   </property>
+  </action>
+  <action name="drawStar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>五角星</string>
+   </property>
+   <property name="toolTip">
+    <string>绘制五角星</string>
+   </property>
+  </action>
+  <action name="drawHexgon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>六边形</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>mainCanvas</class>
+   <extends>QWidget</extends>
+   <header>mainCanvas.h</header>
+   <container>1</container>
+   <slots>
+    <slot>setTransform(int,QVector2D,QVector2D,QVector2D)</slot>
+    <slot>setFillColor(QVector4D)</slot>
+    <slot>setAttrib(QVector2D,QVector2D,QVector2D,int,int,int)</slot>
+    <slot>cancleFillSlot()</slot>
+    <slot>deletePolygonSlot()</slot>
+    <slot>deleteAllPolygonSlot()</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>EllipseControlWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">EllipseControlWidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>updateAttrib(QVector2D,QVector2D,QVector2D,int,int,int)</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>TransformWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">transformwidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>sendData(int,QVector2D,QVector2D,QVector2D)</signal>
+    <signal>cancleFillSignal()</signal>
+    <signal>deletePolygonSignal()</signal>
+    <signal>deleteAllPolygonSignal()</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>transformWidget</sender>
+   <signal>sendData(int,QVector2D,QVector2D,QVector2D)</signal>
+   <receiver>canvas</receiver>
+   <slot>setTransform(int,QVector2D,QVector2D,QVector2D)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>625</x>
+     <y>478</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>566</x>
+     <y>473</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>setColor(QVector4D)</signal>
+   <receiver>canvas</receiver>
+   <slot>setFillColor(QVector4D)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>314</x>
+     <y>103</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>setColor</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setColorDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>340</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>attribWidget</sender>
+   <signal>updateAttrib(QVector2D,QVector2D,QVector2D,int,int,int)</signal>
+   <receiver>canvas</receiver>
+   <slot>setAttrib(QVector2D,QVector2D,QVector2D,int,int,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>654</x>
+     <y>242</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>496</x>
+     <y>239</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>transformWidget</sender>
+   <signal>cancleFillSignal()</signal>
+   <receiver>canvas</receiver>
+   <slot>cancleFillSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>666</x>
+     <y>435</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>495</x>
+     <y>423</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>transformWidget</sender>
+   <signal>deletePolygonSignal()</signal>
+   <receiver>canvas</receiver>
+   <slot>deletePolygonSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>670</x>
+     <y>389</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>520</x>
+     <y>364</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>transformWidget</sender>
+   <signal>deleteAllPolygonSignal()</signal>
+   <receiver>canvas</receiver>
+   <slot>deleteAllPolygonSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>625</x>
+     <y>504</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>545</x>
+     <y>500</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>setColor(QVector4D)</signal>
+  <slot>setColorDialog()</slot>
+ </slots>
+</ui>
