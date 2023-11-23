@@ -1,6 +1,8 @@
 # computer_grapic-expriment
 HNU数字媒体技术 大三上计算机图形学实验
+
 Qt版本：6.4.3
+
 仅使用Qt的drawPoints()函数实现以下功能
 
 1、实现自由绘制直线、椭圆、圆形
