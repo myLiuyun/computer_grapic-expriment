@@ -15,4 +15,4 @@ Qt版本：6.4.3
 
 5、StarPolygon/SquarePolygon/HexgonPolygon/HolePolygon类继承Polygon类，用于方便的绘制五角星、正方形、正六边形、带洞多边形。
 
-可以以参数输入的方式指定Star/Square/Hexgon的大小。
+6、可以以参数输入的方式指定Star/Square/Hexgon的大小。
